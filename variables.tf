@@ -6,3 +6,4 @@ variable "reg" {
 variable "profile" {
   type        = string
   description = "AWS Profile"
+}
