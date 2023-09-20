@@ -1,17 +1,10 @@
-resource "aws_security_group" "test-sg" {
-  name = "sec-grp"
+resource "aws_instance" "testnew" {
+  ami           = "ami-04cb4ca688797756f"
+  instance_type = "t2.micro"
+  key_name      = "mynewkey"
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+  tags = {
+    name = "testec2"
   }
 }
