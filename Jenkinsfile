@@ -18,8 +18,8 @@ node {
        sh 'cat tfplan.json'
    }
    stage('Create PR'){
-      sh 'git checkout main'
-      sh 'gh pr create --title "Pull request test" --body "Pull request body" --head main '
+      sh 'git checkout -b new'
+      sh 'gh pr create --title "Pull request test" --body "Pull request body"'
    }
 
    
