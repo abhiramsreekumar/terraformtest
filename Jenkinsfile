@@ -10,14 +10,14 @@ pipeline {
 
        stage('Terraform Initialize') {
             steps {
-               sh 'terraform init'
+               sh 'terraform init -no-color'
             }
         }
 
        stage('Terraform Plan') {
             steps {
                 script{
-               def output = sh(script: "echo \$(terraform plan)", returnStdout: true)
+               def output = sh(script: "echo \$(terraform plan -no-color)", returnStdout: true)
                echo "Output: ${output}"
                 }
             }
