@@ -24,6 +24,7 @@ node {
    stage('Complete') {
         echo "Build Complete"
         echo "Hi"
+        echo "Ho"
         
    }
 }
