@@ -7,7 +7,7 @@ node {
      }
    
    stage('Terraform Plan') {
-       sh 'terraform plan'
+       sh 'terraform plan >out.txt'
    }
 
    stage('Create PR'){
