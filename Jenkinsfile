@@ -19,7 +19,7 @@ node {
    }
    stage('Create PR'){
       sh 'git checkout -b new'
-      sh 'gh pr create --title "Pull request test" --body "Pull request body"'
+      sh 'gh pr create --title "Pull request test" --body "Pull request body" --head new'
    }
 
    
