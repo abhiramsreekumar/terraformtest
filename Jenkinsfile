@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        def output
+        
         stage('Preparation') {
             steps {
                checkout scm
@@ -16,8 +16,10 @@ pipeline {
 
        stage('Terraform Plan') {
             steps {
-                output = sh(script: "echo \$(terraform plan)", returnStdout: true)
+                script{
+               def output = sh(script: "echo \$(terraform plan)", returnStdout: true)
                echo "Output: ${output}"
+                }
             }
         }
        stage('Create PR') {
