@@ -21,7 +21,7 @@ node {
       sh 'git checkout main'
       sh 'git pull origin main'
       sh 'git push -u origin main'
-      sh 'gh pr create -R {Upstream_Org}/{terraformtest} -H {terraformtest}:{main} --base {main}'
+      sh 'gh pr create -R {Upstream_Org}/{terraformtest} -H {terraformtest}:{main} --base {main} --title "Pull request test" --body "Pull request body"'
       
    }
 
