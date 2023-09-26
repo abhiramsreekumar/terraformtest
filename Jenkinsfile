@@ -18,8 +18,9 @@ pipeline {
             steps {
                 script{
                def output = sh(script: "echo \$(terraform plan -no-color)", returnStdout: true)
-               echo "Output: ${output}"
+               
                 }
+                echo "Output: ${output}"
             }
         }
        stage('Create PR') {
