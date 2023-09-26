@@ -22,6 +22,7 @@ node {
       sh 'git pull origin main'
       sh 'git push -u origin main'
       sh 'git checkout test'
+      sh 'git pull origin test'
       sh 'gh pr create --title "Pull request test" --body "Pull request body"'
       
    }
