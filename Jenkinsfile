@@ -17,6 +17,9 @@ node {
    stage('Terraform Plan to Console') {
        sh 'cat tfplan.json'
    }
+   stage('Create PR'){
+      sh 'gh pr create --title "Pull request title" '
+   }
 
    
 
