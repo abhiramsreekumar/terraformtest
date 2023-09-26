@@ -42,7 +42,7 @@ pipeline {
         }
         failure {
            emailext (
-                to: 'abhiramsreekumar314@gmail.com', 
+                to: '$DEFAULT_RECIPIENTS', 
                 replyTo: 'my@my.dom', 
                 subject: 'Build Failed',
                 body: '$DEFAULT_CONTENT',
