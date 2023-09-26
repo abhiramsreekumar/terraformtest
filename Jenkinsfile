@@ -7,16 +7,9 @@ node {
      }
    
    stage('Terraform Plan') {
-       sh 'terraform plan -out tfplan'
+       sh 'terraform apply'
    }
 
-   stage('Terraform Plan to JSON') {
-       sh 'terraform show -json tfplan  > tfplan.json'
-   }
-   
-   stage('Terraform Plan to Console') {
-       sh 'cat tfplan.json'
-   }
    stage('Create PR'){
       sh 'git checkout main'
       sh 'git pull origin main'
