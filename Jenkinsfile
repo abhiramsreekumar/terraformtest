@@ -29,7 +29,7 @@ pipeline {
                sh 'git push -u origin main'
                sh 'git checkout test'
                sh 'git pull origin test'
-               sh "gh pr create --title '${output}' --body 'Pull request body'"
+               sh "gh pr create --title 'test' --body 'Pull request body'"
             }
         }
     }
@@ -48,13 +48,6 @@ pipeline {
                 body: '$DEFAULT_CONTENT',
                 mimeType: 'text/html'
             );
-        }
-        unstable {
-            echo 'This will run only if the run was marked as unstable'
-        }
-        changed {
-            echo 'This will run only if the state of the Pipeline has changed'
-            echo 'For example, if the Pipeline was previously failing but is now successful'
         }
     }
 }
