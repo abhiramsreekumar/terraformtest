@@ -8,6 +8,7 @@ node {
    
    stage('Terraform Plan') {
       def output = sh(script: "echo \$(terraform plan)", returnStdout: true)
+      
    }
 
    stage('Create PR'){
