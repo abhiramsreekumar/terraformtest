@@ -7,7 +7,7 @@ node {
      }
    
    stage('Terraform Plan') {
-       sh 'terraform apply -auto-approve'
+       sh 'terraform plan'
    }
 
    stage('Create PR'){
