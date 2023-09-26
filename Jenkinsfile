@@ -41,7 +41,7 @@ pipeline {
             echo 'This will run only if successful'
         }
         failure {
-            echo 'THis means failed'
+           emailext
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
