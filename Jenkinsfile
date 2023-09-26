@@ -30,4 +30,15 @@ node {
         echo "Hi"
         
    }
+   post {
+ failure {
+  emailext body: '', subject: ''
+ }
+ 
+ changed {
+  sh 'echo "This will run only if the state of the Pipeline has changed"'
+  sh 'echo "For example, the Pipeline was previously failing but is now successful"'
+  sh 'echo "... or the other way around :)"'
+ }
+}
 }
