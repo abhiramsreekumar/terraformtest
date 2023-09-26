@@ -19,7 +19,6 @@ node {
    }
    stage('Create PR'){
       sh 'git checkout main'
-      sh 'git reset --soft HEAD~1'
       sh 'gh pr create --title "Pull request test" --body "Pull request body" '
    }
 
