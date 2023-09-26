@@ -7,7 +7,7 @@ node {
      }
    
    stage('Terraform Plan') {
-       sh 'terraform plan \> out.txt'
+      def output = sh(script: "echo \$(terraform plan)", returnStdout: true)
    }
 
    stage('Create PR'){
@@ -17,7 +17,7 @@ node {
       sh 'git checkout test'
       sh 'git pull origin test'
       sh 'ab=cat out.txt
-      sh 'gh pr create --title "$ab" --body "Pull request body"'
+      sh 'gh pr create --title "${output}" --body "Pull request body"'
       
    }
 
