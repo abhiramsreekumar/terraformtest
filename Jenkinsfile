@@ -41,7 +41,13 @@ pipeline {
             echo 'This will run only if successful'
         }
         failure {
-           emailext
+           emailext (
+                to: 'abhiramsreekumar314@gmail.com', 
+                replyTo: 'my@my.dom', 
+                subject: '$DEFAULT_SUBJECT',
+                body: '$DEFAULT_CONTENT',
+                mimeType: 'text/html'
+            );
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
