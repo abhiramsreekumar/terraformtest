@@ -5,6 +5,6 @@ resource "aws_instance" "testnew" {
 
 
   tags = {
-    name = "testec2"
+    name = "testec1"
   }
 }
