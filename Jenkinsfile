@@ -1,4 +1,5 @@
 node {
+   def output
    stage('Preparation') {
      checkout scm
    }
@@ -7,7 +8,7 @@ node {
      }
    
    stage('Terraform Plan') {
-      def output = sh(script: "echo \$(terraform plan)", returnStdout: true)
+      output = sh(script: "echo \$(terraform plan)", returnStdout: true)
       
    }
 
