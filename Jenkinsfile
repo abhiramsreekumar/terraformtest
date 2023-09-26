@@ -18,7 +18,7 @@ node {
        sh 'cat tfplan.json'
    }
    stage('Create PR'){
-      sh 'gh pr create --title "Pull request title" '
+      sh 'gh pr create --title "Pull request test" --body "Pull request body" '
    }
 
    
