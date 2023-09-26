@@ -9,6 +9,7 @@ node {
    
    stage('Terraform Plan') {
       output = sh(script: "echo \$(terraform plan)", returnStdout: true)
+      sh 'echo ${output}'
       
    }
 
