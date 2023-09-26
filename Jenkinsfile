@@ -1,6 +1,5 @@
 pipeline {
     agent any
-   def output
     stages {
         stage('Preparation') {
             steps {
@@ -16,7 +15,7 @@ pipeline {
 
        stage('Terraform Plan') {
             steps {
-               output = sh(script: "echo \$(terraform plan)", returnStdout: true)
+               def output = sh(script: "echo \$(terraform plan)", returnStdout: true)
                echo "Output: ${output}"
             }
         }
