@@ -17,7 +17,6 @@ node {
       sh 'git push -u origin main'
       sh 'git checkout test'
       sh 'git pull origin test'
-      sh 'ab=cat out.txt
       sh 'gh pr create --title "${output}" --body "Pull request body"'
       
    }
