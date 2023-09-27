@@ -25,8 +25,6 @@ pipeline {
                sh 'git checkout test'
                sh 'git pull origin test'
                sh 'git push -u origin test'
-                script{
-                }
                sh "gh pr create --title '${env.output}' --body 'Pull request body'"
             }
         }
