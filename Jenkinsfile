@@ -37,7 +37,6 @@ pipeline {
         }
         failure {
            emailext (
-                from: 'DevOps QB',
                 to: '$DEFAULT_RECIPIENTS', 
                 replyTo: '$DEFAULT_RECIPIENTS', 
                 subject: 'Build Failed',
