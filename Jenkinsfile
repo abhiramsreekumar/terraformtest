@@ -1,37 +1,53 @@
-node {
-   stage('Preparation') {
-     checkout scm
-   }
-   stage('Terraform Initialize') {
-       sh 'terraform init'
-     }
-   
-   stage('Terraform Plan') {
-       sh 'terraform plan -out tfplan'
-   }
-
-   stage('Terraform Plan to JSON') {
-       sh 'terraform show -json tfplan  > tfplan.json'
-   }
-   
-   stage('Terraform Plan to Console') {
-       sh 'cat tfplan.json'
-   }
-   stage('Create PR'){
-      sh 'git checkout main'
-      sh 'git pull origin main'
-      sh 'git push -u origin main'
-      sh 'gh pr create --title "Pull request test" --body "Pull request body"'
-      
-   }
-
-   
-
-   
-   stage('Complete') {
-        echo "Build Complete"
-        echo "Hi"
-        echo "H"
+pipeline {
+    agent any
+    stages {
         
-   }
+        
+
+       stage('Terraform Initialize') {
+            steps {
+               sh 'terraform init -no-color'
+            }
+        }
+
+       stage('Terraform Plan') {
+            steps {
+                script{
+               env.output = sh(script: "echo \$(terraform plan -no-color)", returnStdout: true)
+                    echo "Output: ${output}"
+               
+                
+                }   
+            }
+        }
+       stage('Create PR') {
+            steps {
+               sh 'git checkout test'
+               sh 'git pull origin test'
+               sh 'git push -u origin test'
+                script{
+                }
+               sh "gh pr create --title '${env.output}' --body 'Pull request body'"
+            }
+        }
+    }
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+           emailext (
+                to: '$DEFAULT_RECIPIENTS', 
+                replyTo: '$DEFAULT_RECIPIENTS', 
+                subject: 'Build Failed',
+                body: '$DEFAULT_CONTENT',
+                mimeType: 'text/html'
+            );
+        }
+    }
 }
+
+
