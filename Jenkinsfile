@@ -36,7 +36,7 @@ pipeline {
            emailext (
                 to: '$DEFAULT_RECIPIENTS', 
                 replyTo: '$DEFAULT_RECIPIENTS', 
-                subject: 'Build Failed',
+                subject: '$DEFAULT_SUBJECT',
                 body: '$DEFAULT_CONTENT',
                 mimeType: 'text/html'
             );
