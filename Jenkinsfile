@@ -48,7 +48,7 @@ pipeline {
         failure {
            emailext (
                 to: '$DEFAULT_RECIPIENTS', 
-                replyTo: 'my@my.dom', 
+                replyTo: '$DEFAULT_RECIPIENTS', 
                 subject: 'Build Failed',
                 body: '$DEFAULT_CONTENT',
                 mimeType: 'text/html'
