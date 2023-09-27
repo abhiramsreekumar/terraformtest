@@ -2,11 +2,7 @@ pipeline {
     agent any
     stages {
         
-        stage('Preparation') {
-            steps {
-               checkout scm
-            }
-        }
+        
 
        stage('Terraform Initialize') {
             steps {
