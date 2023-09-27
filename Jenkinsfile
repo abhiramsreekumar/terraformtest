@@ -29,11 +29,8 @@ pipeline {
         }
     }
     post {
-        always {
-            echo 'This will always run'
-        }
         success {
-            echo 'This will run only if successful'
+            echo 'The build was successful'
         }
         failure {
            emailext (
