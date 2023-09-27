@@ -1,9 +1,6 @@
 pipeline {
     agent any
     stages {
-        
-        
-
        stage('Terraform Initialize') {
             steps {
                sh 'terraform init -no-color'
