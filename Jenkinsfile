@@ -7,14 +7,14 @@ pipeline {
        stage('Terraform Initialize') {
             steps {
                sh 'terraform init -no-color'
-               sh 'terraform apply --auto-approve -no-color'
+               
             }
         }
 
        stage('Terraform Plan') {
             steps {
                 script{
-               env.output = sh(script: "echo \$(echo)", returnStdout: true)
+               env.output = sh(script: "echo \$(terraform plan -no-color)", returnStdout: true)
                     echo "Output: ${output}"
                
                 
