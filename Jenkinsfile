@@ -7,13 +7,14 @@ pipeline {
        stage('Terraform Initialize') {
             steps {
                sh 'terraform init -no-color'
+               sh 'terraform apply --auto-approve -no-color
             }
         }
 
        stage('Terraform Plan') {
             steps {
                 script{
-               env.output = sh(script: "echo \$(terraform plan -no-color)", returnStdout: true)
+               env.output = sh(script: "echo \$(echo)", returnStdout: true)
                     echo "Output: ${output}"
                
                 
@@ -25,7 +26,7 @@ pipeline {
                sh 'git checkout test'
                sh 'git pull origin test'
                sh 'git push -u origin test'
-               sh "gh pr create --title '${env.output}' --body 'Pull request body'"
+               #sh "gh pr create --title '${env.output}' --body 'Pull request body'"
             }
         }
     }
