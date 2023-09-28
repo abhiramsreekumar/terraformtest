@@ -1,46 +1,42 @@
 pipeline {
     agent any
     stages {
+        
+        
+
        stage('Terraform Initialize') {
             steps {
                sh 'terraform init -no-color'
-               
             }
         }
+
        stage('Terraform Plan') {
             steps {
                 script{
-               env.output = sh(script: "echo \$(terraform apply --auto-approve -no-color)", returnStdout: true)
+               env.output = sh(script: "echo \$(terraform plan -no-color)", returnStdout: true)
                     echo "Output: ${output}"
                
                 
                 }   
             }
         }
-       stage('Create PR') {
-            steps {
-               sh 'git checkout test'
-               sh 'git pull origin test'
-               sh 'git push -u origin test'
-               sh "gh pr create --title '${env.output}' --body 'Pull request body'"
-              
-            }
-        }
+       
     }
     post {
+        always {
+            echo 'This will always run'
+        }
         success {
-            echo 'The build was successful'
+            echo 'This will run only if successful'
         }
         failure {
            emailext (
                 to: '$DEFAULT_RECIPIENTS', 
                 replyTo: '$DEFAULT_RECIPIENTS', 
-                subject: '$DEFAULT_SUBJECT',
+                subject: 'Build Failed',
                 body: '$DEFAULT_CONTENT',
                 mimeType: 'text/html'
             );
         }
     }
 }
-
-
